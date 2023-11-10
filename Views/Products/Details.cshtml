@@ -1,0 +1,199 @@
+﻿@* @model theta_ecommerce.Models.Product
+@using Microsoft.AspNetCore.Mvc.Rendering
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Details";
+}
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include elevatezoom script and CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+
+
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-8">
+            <div class="col-12">
+                @{
+                    string[] images = Model.Images.Split(",");
+                }
+                <img class="largeimage" src="@images[0]" style="max-height:600px;max-width:600px" />
+            </div>
+            <div class="col-12">
+                @foreach (var image in images)
+                {
+                    <img class="smallimage" src="@image" style="max-height:100px;max-width:100px" />
+                }
+            </div>
+        </div>
+        <div class="col-4">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd> *@
+                @* <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Images)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Images)
+                </dd> *@
+               @*  <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sku)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sku)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@
+@model theta_ecommerce.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            @{
+                string[] images = Model.Images.Split(",");
+            }
+            @if (images.Length > 0)
+            {
+                <div class="image-gallery">
+                    @foreach (var image in images)
+                    {
+                        <div class="image-container">
+                            <img src="@image" class="largeimage" alt="Image" />
+                            <div class="image-zoom">Mens wear</div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        <div class="col-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Quantity)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Sku)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Sku)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<style>
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .image-container {
+        position: relative;
+        margin: 10px;
+    }
+
+    .largeimage {
+        max-height: 200px;
+        max-width: 200px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .largeimage:hover {
+            transform: scale(1.2);
+        }
+
+    .image-zoom {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    const largeImages = document.querySelectorAll(".largeimage");
+    const imageZooms = document.querySelectorAll(".image-zoom");
+
+    imageZooms.forEach((zoom, index) => {
+        zoom.addEventListener("click", () => {
+            largeImages[index].classList.toggle("zoomed");
+        });
+    });
+</script>
+<br>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

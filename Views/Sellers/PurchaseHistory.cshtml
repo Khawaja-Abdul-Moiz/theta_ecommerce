@@ -1,0 +1,27 @@
+﻿@model List<PurchaseHistory>
+
+<h2>Purchase History for @Model.FirstOrDefault()?.Seller.Name</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Vendor</th>
+            <th>Product</th>
+            <th>Purchase Date</th>
+            <th>Quantity</th>
+            <th>Purchase Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var purchase in Model)
+        {
+            <tr>
+                <td>@purchase.Vendor.Name</td>
+                <td>@purchase.Product.Name</td>
+                <td>@purchase.PurchaseDate</td>
+                <td>@purchase.Quantity</td>
+                <td>@purchase.PurchasePrice</td>
+            </tr>
+        }
+    </tbody>
+</table>

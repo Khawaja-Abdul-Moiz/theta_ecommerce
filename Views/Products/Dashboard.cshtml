@@ -1,0 +1,473 @@
+﻿ @{
+    SelectList catagoryList = new SelectList(ViewBag.CatagoryList, "Id", "Name");
+}
+
+
+
+
+@* <style>
+.maindiv img {
+    max-width: 200px; /* Adjust the width to your desired size */
+    max-height: 200px; /* Adjust the height to your desired size */
+    object-fit: cover;
+}
+</style> *@ 
+
+
+
+
+@*Html.DropDownListFor(Model => Model.catagoryId)*@
+
+<!-- Dashboard.cshtml -->
+<!-- Dashboard.cshtml -->
+@*  @{
+    SelectList categoryList = ViewBag.CategoryList as SelectList;
+} *@
+@* 
+ <h1>Dashboard</h1> 
+@Html.DropDownList("CatagoryId", catagoryList, "Select Catagory")
+<div class="maindiv">
+</div>
+ <style>
+    /* Add this style to display images horizontally */
+    .image-container {
+        display: flex;
+    }
+
+        /* Add this style for the images inside the container */
+        .image-container img {
+            max-width: 200px; /* Adjust the width to your desired size */
+            max-height: 200px; /* Adjust the height to your desired size */
+            object-fit: cover;
+            margin-right: 10px; /* Add some spacing between images */
+        }
+
+    /* Add this style for product details */
+    .product-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Add this style for the zoom effect */
+    .image-container img:hover {
+        transform: scale(1.2); /* Adjust the scale factor as needed for zoom effect */
+        transition: transform 0.3s; /* Adjust the duration for smooth zooming */
+    }
+</style>
+*@
+@*
+
+@section Scripts{
+    <script>
+        //$(".maindiv").load("LoadProducts");
+        $("#CatagoryId").change(function () {
+            $.ajax({
+                url: "LoadProducts",
+                method: "GET",
+                data: {
+                    Id: $(this).val(),
+                },
+                success: function (result) {
+                    $(".maindiv").html(result);
+                },
+                error: function (result) {
+                }
+            });
+        });
+    </script>
+} 
+ *@
+@{
+    Layout = null; 
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>E-Commerce Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            margin: 0;
+            background-color: #1B1919;
+            color: white;
+        }
+
+        .maindiv img {
+            max-width: 200px; /* Adjust the width to your desired size */
+            max-height: 200px; /* Adjust the height to your desired size */
+            object-fit: cover;
+            background-color: #282828;
+        }
+        /* Add this style to display images horizontally */
+        .image-container {
+            display: flex;
+        }
+
+            /* Add this style for the images inside the container */
+            .image-container img {
+                max-width: 200px; /* Adjust the width to your desired size */
+                max-height: 200px; /* Adjust the height to your desired size */
+                object-fit: cover;
+                margin-right: 10px; /* Add some spacing between images */
+            }
+
+        /* Add this style for product details */
+        .product-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Add this style for the zoom effect */
+        .image-container img:hover {
+            transform: scale(1.2); /* Adjust the scale factor as needed for zoom effect */
+            transition: transform 0.3s; /* Adjust the duration for smooth zooming */
+        }
+
+        /* Add CSS styles for the sticky WhatsApp sign */
+        .whatsapp-sign {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            z-index: 999;
+        }
+
+        /* Header styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #282828;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            width: 55px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+        }
+
+            .navigation a {
+                margin: 0 10px;
+                text-decoration: none;
+                color: white;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+                .navigation a:hover {
+                    background-color: #FEC53A;
+                    border-radius: 8px;
+                }
+
+        .search-bar {
+            margin-left: 15px;
+            width: 200px;
+            height: 25px;
+        }
+
+        .button {
+            background-color: #282828;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .button:hover {
+                background-color: #FEC53A;
+                border-radius: 8px;
+            }
+
+        /* Footer styles */
+        footer {
+            width: 100%;
+            background: #282828;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-body {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-logo {
+            height: 12vh;
+            background-color: #FEC53A;
+            color: #000;
+            line-height: 1.7rem;
+        }
+
+        ul h3 {
+            color: #fff;
+            font-weight: 400;
+        }
+
+        ul li {
+            list-style: none;
+            line-height: 2.5rem;
+        }
+
+            ul li a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+                ul li a .fab {
+                    font-size: 1.2rem;
+                    color: #FEC53A;
+                    margin-right: 15px;
+                }
+
+                ul li a:hover {
+                    color: #FEC53A;
+                }
+
+        .social-links a {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: #FEC53A;
+            margin: 0 10px 10px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #000;
+        }
+
+        .hv {
+            color: #FEC53A;
+        }
+
+        .footer-bottom {
+            width: 100%;
+            height: 7vh;
+            background: #1B1919;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+
+            .footer-bottom span {
+                color: #FEC53A;
+                font-weight: bold;
+            }
+
+        /* Slider styles */
+        .slider-container {
+            width: 100%;
+            height: 130%;
+            display: flex;
+        }
+
+        .slider-images {
+            width: 80%;
+            height: 130%;
+            overflow: hidden;
+        }
+
+        .slider-image {
+            width: 100%;
+            height: 130%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .slider-image img {
+                max-width: 100%;
+                max-height: 130%;
+                object-fit: cover;
+            }
+
+        .slider-content {
+            width: 20%;
+            height: 130%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+            font-size: 18px;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <img src="\imj\Solo2.png" alt="Logo" class="logo">
+        </div>
+        <nav class="navigation">
+            @Html.DropDownList("CatagoryId", catagoryList, "Select Catagory")
+            <a href="/home">&nbsp; &nbsp; Home &nbsp;&nbsp;</a>
+            <a href="/purchases/index">&nbsp; &nbsp; Purchases &nbsp;&nbsp;</a>
+            <a href="/categories/index">&nbsp; &nbsp; Category &nbsp;&nbsp;</a>
+            <a href="/products/index">&nbsp; &nbsp; Products &nbsp;&nbsp;</a>
+
+        </nav>
+        <div>
+            <input type="text" placeholder="Search" class="search-bar">
+            <a href="/sellers/create" class="button">Sign Up</a>
+            <a href="/sellers/login" class="button">Sign In</a>
+        </div>
+    </header>
+
+    <div class="slider-container">
+        <div class="slider-images">
+            <div class="slider-image">
+                <img src="\imj\watch2.jpg" alt="Slider Image 2">
+            </div>
+            <div class="slider-image">
+                <img src="\imj\man.jpg" alt="Slider Image 1">
+            </div>
+            <div class="slider-image">
+                <img src="\imj\imj.jpg" alt="Slider Image 3">
+            </div>
+            <div class="slider-image">
+                <img src="\imj\watch1.jpg" alt="Slider Image 4">
+            </div>
+        </div>
+        <div class="slider-content">
+            <p>
+                Welcome to Stigma, your one-stop shop for all your male product needs. We offer a wide range of
+                high-quality products designed for men.
+            </p>
+            <p>
+                Our team is dedicated to providing the best shopping experience for our customers. We carefully curate our
+                product selection to ensure that we only offer items that meet our strict quality standards.
+            </p>
+            <p>
+                Whether you're looking for products, fashion accessories, or style items, we have you covered.
+                Discover the latest trends in men's fashion and personal care.
+            </p>
+            <p>
+                At Stigma, we value our customers and strive to provide great service. If you have any
+                questions or need assistance, our customer support team is ready to help.
+            </p>
+        </div>
+    </div>
+    <a href="https://wa.me/03218615055?text=Hello,%20I%20have%20a%20question%20about%20your%20website"
+       class="whatsapp-sign">
+        <i class="fab fa-whatsapp"></i> Contact Us
+    </a>
+    <div class="maindiv">
+    </div>
+    <footer>
+        <div class="footer-body">
+            <ul>
+                <h3 class="hv">Short Links</h3>
+                <li><a href="/Home/">Home</a></li>
+                <li><a href="E-Com.html">About</a></li>
+                <li><a href="Pro.html">Services</a></li>
+                <li><a href="Pro.html">Product</a></li>
+            </ul>
+
+            <ul>
+                <h3 class="hv">Help in Purchases</h3>
+                <li><a href="Pro.html">Sale</a></li>
+                <li><a href="Pro.html">Price</a></li>
+                <li><a href="Pro.html">Discount</a></li>
+                <li><a href="Pro.html">Add to Cart</a></li>
+            </ul>
+
+            <ul>
+                <h3 class="hv">Get In Touch</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </ul>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        <p>© All Rights Reserved | Designed <span>By Khawaja</span> 2023</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.slider-images').slick({
+                autoplay: true,
+                autoplaySpeed: 1000,
+                arrows: false,
+                dots: false,
+            });
+        });
+        $("#CatagoryId").change(function () {
+            $.ajax({
+                url: "LoadProducts",
+                method: "GET",
+                data: {
+                    Id: $(this).val(),
+                },
+                success: function (result) {
+                    $(".maindiv").html(result);
+                },
+                error: function (result) {
+                }
+            });
+        });
+    </script>
+   @*  <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+    @* <script src="~/Project.js"></script> 
+    <script>
+
+        $("#CatagoryId").change(function () {
+            $.ajax({
+                url: "LoadProducts",
+                method: "GET",
+                data: {
+                    Id: $(this).val(),
+                },
+                success: function (result) {
+                    $(".maindiv").html(result);
+                },
+                error: function (result) {
+                }
+            });
+        });
+
+
+    </script> *@
+</body>
+
+</html>

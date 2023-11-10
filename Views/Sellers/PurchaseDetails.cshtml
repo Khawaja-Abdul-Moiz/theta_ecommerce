@@ -1,0 +1,26 @@
+﻿@model PurchaseHistory
+
+<h2>Purchase Details</h2>
+
+<table class="table">
+    <tr>
+        <th>Vendor</th>
+        <td>@Model.Vendor.Name</td>
+    </tr>
+    <tr>
+        <th>Product</th>
+        <td>@Model.Product.Name</td>
+    </tr>
+    <tr>
+        <th>Purchase Date</th>
+        <td>@Model.PurchaseDate</td>
+    </tr>
+    <tr>
+        <th>Quantity</th>
+        <td>@Model.Quantity</td>
+    </tr>
+    <tr>
+        <th>Purchase Price</th>
+        <td>@Model.PurchasePrice</td>
+    </tr>
+</table>

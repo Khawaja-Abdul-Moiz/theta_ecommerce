@@ -1,0 +1,356 @@
+﻿@* @model theta_ecommerce.Models.Admin
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <div class="col-8">
+        <div class="col-12">
+            @{
+                string[] images = Model.Image.Split(",");
+            }
+            <img class="largeimage" src="@images[0]" style="max-height:600px;max-width:600px" />
+        </div>
+        <div class="col-12">
+            @foreach (var image in images)
+            {
+                <img class="smallimage" src="@image" style="max-height:100px;max-width:100px" />
+            }
+        </div>
+    </div> *@
+@* @model theta_ecommerce.Models.Admin
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <div class="col-8">
+        <div class="col-12">
+            @{
+                string[] images = Model.Image.Split(",");
+            }
+        </div>
+        <div class="image-gallery">
+            @foreach (var image in images)
+            {
+                <div class="image-item">
+                    <img src="@image" class="smallimage" alt="Image" />
+                    <div class="image-zoom">
+                        <img src="@image" alt="Image" />
+                    </div>
+                    <div class="image-rating">
+                        <div class="star">&#9733;</div>
+                        <div class="star">&#9733;</div>
+                        <div class="star">&#9733;</div>
+                        <div class="star">&#9733;</div>
+                        <div class="star">&#9733;</div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+<style>
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .image-item {
+        position: relative;
+        margin: 10px;
+    }
+
+    .smallimage {
+        max-height: 100px;
+        max-width: 100px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .smallimage:hover {
+            transform: scale(1.2);
+        }
+
+    .image-zoom {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.8);
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .image-item:hover .image-zoom {
+        display: block;
+    }
+
+    .image-zoom img {
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+    .image-rating {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        display: flex;
+    }
+
+    .star {
+        color: gold;
+        font-size: 20px;
+    }
+</style>
+
+
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+       @*  <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Image)
+        </dd> *@
+       @*  <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cnic)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cnic)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedBy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedBy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SystemUserId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SystemUserId)
+        </dd>
+    </dl>
+</div>
+<script>
+    const largeImage = document.querySelector(".largeimage");
+    const imageZoom = document.querySelector(".image-zoom");
+
+    imageZoom.addEventListener("click", function () {
+        largeImage.classList.toggle("zoomed");
+    });
+</script>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div> *@
+@model theta_ecommerce.Models.Admin
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            @{
+                string[] images = Model.Image.Split(",");
+            }
+            <div class="image-container">
+                <img src="@images[0]" class="largeimage" alt="Image" />
+                <div class="image-zoom">Ali</div>
+            </div>
+        </div>
+        <div class="col-6">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PhoneNo)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PhoneNo)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Cnic)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Cnic)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedBy)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedBy)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedBy)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ModifiedDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ModifiedDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Role)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Role)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.SystemUserId)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.SystemUserId)
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<style>
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .largeimage {
+        max-height: 400px;
+        max-width: 400px;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .largeimage:hover {
+            transform: scale(1.2);
+        }
+
+    .image-zoom {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    const largeImage = document.querySelector(".largeimage");
+    const imageZoom = document.querySelector(".image-zoom");
+
+    imageZoom.addEventListener("click", function () {
+        largeImage.classList.toggle("zoomed");
+    });
+</script>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

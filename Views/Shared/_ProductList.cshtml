@@ -1,0 +1,22 @@
+﻿@model List<Product>
+    <!-- Make sure to specify the appropriate model type -->
+
+    <div class="card-deck">
+        @foreach (var product in Model)
+        {
+            <div class="card">
+                @if (!string.IsNullOrEmpty(product.Images))
+                {
+                    string[] images = product.Images.Split(",");
+                    foreach (var image in images)
+                    {
+                        <img class="card-img-top" src="@image" alt="Card image cap">
+                    }
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">@product.Description</p>
+                </div>
+            </div>
+        }
+    </div>
